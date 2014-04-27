@@ -44,7 +44,7 @@ matches <- unique (grep(paste(toMatch,collapse="|"), data.features, value=TRUE))
 
 tdata <- data[,c("subject","activity_label",matches)]
 
-write.table(tdata, "tidy-data-meanstd.txt")
+write.table(tdata, "tidy-data-meanstd.txt", row.names = FALSE)
 
 # 5
 # Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
@@ -54,4 +54,4 @@ library(reshape2)
 tdata.melt <- melt(tdata,id=c("subject","activity_label"))
 tdata.average <- dcast(tdata.melt, subject + activity_label ~ variable,mean)
 
-write.table(tdata.average, "tidy-data-averages.txt")
+write.table(tdata.average, "tidy-data-averages.txt", row.names = FALSE)
